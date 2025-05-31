@@ -1,3 +1,7 @@
-import Redis from 'ioredis';
+import { createClient } from 'redis';
 
-export const redis = new Redis(process.env.REDIS_URL!);
+export const redis = createClient({
+  url: process.env.REDIS_URL
+});
+
+redis.connect().catch(console.error);
